@@ -33,7 +33,7 @@ class Notification extends React.PureComponent {
       <div className='notification notification-favourite'>
         <div className='notification__message'>
           <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-star star-icon'/>
+            <i className='fa fa-fw fa-floppy-o star-icon'/>
           </div>
 
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
