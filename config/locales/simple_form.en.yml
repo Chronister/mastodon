@@ -6,7 +6,7 @@ en:
         avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 120x120px
         display_name: At most 30 characters
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
-        locked: Requires you to manually approve followers and defaults post privacy to followers-only
+        locked: Requires you to manually approve followers and defaults ping privacy to followers-only
         note: At most 160 characters
       imports:
         data: CSV file exported from another Mastodon instance
@@ -38,11 +38,11 @@ en:
         must_be_following: Block notifications from people you don't follow
       notification_emails:
         digest: Send digest e-mails
-        favourite: Send e-mail when someone favourites your status
+        favourite: Send e-mail when someone florps your ping
         follow: Send e-mail when someone follows you
         follow_request: Send e-mail when someone requests to follow you
         mention: Send e-mail when someone mentions you
-        reblog: Send e-mail when someone boosts your status
+        reblog: Send e-mail when someone boosts your ping
     'no': 'No'
     required:
       mark: "*"
