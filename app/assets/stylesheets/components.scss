@@ -1275,8 +1275,8 @@ button.icon-button i.fa-retweet {
   height: 19px;
   width: 22px;
   background-position: 0 0;
-  transition: background-position 0.9s steps(10);
-  transition-duration: 0s;
+  transition: background-position 0.6s steps(9);
+  transition-duration: 0.4s;
 
   &::before {
     display: none !important;
@@ -1284,7 +1284,8 @@ button.icon-button i.fa-retweet {
 }
 
 button.icon-button.active i.fa-retweet {
-  transition-duration: 0.9s;
+  transition: background-position 0.6s steps(9);
+  transition-duration: 0.6s;
   background-position: 0 100%;
 }
 
