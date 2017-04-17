@@ -1,0 +1,295 @@
+From 118ac59e5118b43a7e9e552e7b24074dcab4ea47 Mon Sep 17 00:00:00 2001
+From: Chronister <chronal@uw.edu>
+Date: Wed, 5 Apr 2017 16:51:30 +0000
+Subject: [PATCH 1/5] Theme customizations for cybre.space
+
+- likes are florps
+- Rename post/status -> ping in UI
+- Boost -> Relay
+- cybreify column names
+- Like icon -> floppy disk
+---
+ .../components/components/status_action_bar.jsx    |  2 +-
+ .../components/features/getting_started/index.jsx  |  4 +--
+ .../notifications/components/notification.jsx      |  2 +-
+ .../features/status/components/action_bar.jsx      |  2 +-
+ app/assets/javascripts/components/locales/en.jsx   | 36 +++++++++++-----------
+ app/assets/stylesheets/custom.scss                 | 16 ++++++++++
+ config/locales/en.yml                              | 18 +++++------
+ config/locales/simple_form.en.yml                  |  6 ++--
+ 8 files changed, 51 insertions(+), 35 deletions(-)
+ create mode 100644 app/assets/stylesheets/custom.scss
+
+diff --git a/app/assets/javascripts/components/components/status_action_bar.jsx b/app/assets/javascripts/components/components/status_action_bar.jsx
+index 1b38caa4..2cae885a 100644
+--- a/app/assets/javascripts/components/components/status_action_bar.jsx
++++ b/app/assets/javascripts/components/components/status_action_bar.jsx
+@@ -100,7 +100,7 @@ const StatusActionBar = React.createClass({
+       <div style={{ marginTop: '10px', overflow: 'hidden' }}>
+         <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
+         <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private' || status.get('visibility') === 'direct'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
+-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
++        <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='floppy-o' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+ 
+         <div style={{ width: '18px', height: '18px', float: 'left' }}>
+           <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" />
+diff --git a/app/assets/javascripts/components/features/getting_started/index.jsx b/app/assets/javascripts/components/features/getting_started/index.jsx
+index 6167d7cf..c40f0f81 100644
+--- a/app/assets/javascripts/components/features/getting_started/index.jsx
++++ b/app/assets/javascripts/components/features/getting_started/index.jsx
+@@ -12,7 +12,7 @@ const messages = defineMessages({
+   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
+   sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
+-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
++  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Florps' },
+   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
+   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' }
+@@ -35,7 +35,7 @@ const GettingStarted = ({ intl, me }) => {
+         <ColumnLink icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />
+         <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
+         <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
+-        <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
++        <ColumnLink icon='floppy-o' text={intl.formatMessage(messages.favourites)} to='/favourites' />
+         {followRequests}
+         <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+         <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
+diff --git a/app/assets/javascripts/components/features/notifications/components/notification.jsx b/app/assets/javascripts/components/features/notifications/components/notification.jsx
+index 2a9f2d07..1029a4f6 100644
+--- a/app/assets/javascripts/components/features/notifications/components/notification.jsx
++++ b/app/assets/javascripts/components/features/notifications/components/notification.jsx
+@@ -44,7 +44,7 @@ const Notification = React.createClass({
+       <div className='notification notification-favourite'>
+         <div className='notification__message'>
+           <div style={{ position: 'absolute', 'left': '-26px'}}>
+-            <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
++            <i className='fa fa-fw fa-floppy-o' style={{ color: '#ca8f04' }} />
+           </div>
+ 
+           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
+diff --git a/app/assets/javascripts/components/features/status/components/action_bar.jsx b/app/assets/javascripts/components/features/status/components/action_bar.jsx
+index a2d8a24b..bf8d559c 100644
+--- a/app/assets/javascripts/components/features/status/components/action_bar.jsx
++++ b/app/assets/javascripts/components/features/status/components/action_bar.jsx
+@@ -79,7 +79,7 @@ const ActionBar = React.createClass({
+       <div className='detailed-status__action-bar'>
+         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
+         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton disabled={status.get('visibility') === 'direct' || status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
+-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
++        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='floppy-o' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><DropdownMenu size={18} icon='ellipsis-h' items={menu} direction="left" /></div>
+       </div>
+     );
+diff --git a/app/assets/javascripts/components/locales/en.jsx b/app/assets/javascripts/components/locales/en.jsx
+index 5c123852..8ad093ae 100644
+--- a/app/assets/javascripts/components/locales/en.jsx
++++ b/app/assets/javascripts/components/locales/en.jsx
+@@ -18,7 +18,7 @@ const en = {
+   "account.follows": "Follows",
+   "account.mention": "Mention @{name}",
+   "account.mute": "Mute @{name}",
+-  "account.posts": "Posts",
++  "account.posts": "Pings",
+   "account.report": "Report @{name}",
+   "account.requested": "Awaiting approval",
+   "account.unblock": "Unblock @{name}",
+@@ -27,16 +27,16 @@ const en = {
+   "boost_modal.combo": "You can press {combo} to skip this next time",
+   "column_back_button.label": "Back",
+   "column.blocks": "Blocked users",
+-  "column.community": "Local timeline",
+-  "column.favourites": "Favourites",
++  "column.community": "/timelines/local",
++  "column.favourites": "Florps",
+   "column.follow_requests": "Follow requests",
+-  "column.home": "Home",
++  "column.home": "/home/@{name}",
+   "column.mutes": "Muted users",
+-  "column.notifications": "Notifications",
+-  "column.public": "Federated timeline",
+-  "compose_form.placeholder": "What is on your mind?",
+-  "compose_form.privacy_disclaimer": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your post is private, and it may be boosted or otherwise made visible to unintended recipients.",
+-  "compose_form.publish": "Toot",
++  "column.notifications": "/var/notifications",
++  "column.public": "/timelines/federated",
++  "compose_form.placeholder": "What is in your databanks?",
++  "compose_form.privacy_disclaimer": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your ping is private, and it may be relayed or otherwise made visible to unintended recipients.",
++  "compose_form.publish": "Ping",
+   "compose_form.sensitive": "Mark media as sensitive",
+   "compose_form.spoiler_placeholder": "Content warning",
+   "compose_form.spoiler": "Hide text behind warning",
+@@ -55,7 +55,7 @@ const en = {
+   "home.column_settings.advanced": "Advanced",
+   "home.column_settings.basic": "Basic",
+   "home.column_settings.filter_regex": "Filter out by regular expressions",
+-  "home.column_settings.show_reblogs": "Show boosts",
++  "home.column_settings.show_reblogs": "Show relays",
+   "home.column_settings.show_replies": "Show replies",
+   "home.settings": "Column settings",
+   "lightbox.close": "Close",
+@@ -65,24 +65,24 @@ const en = {
+   "navigation_bar.blocks": "Blocked users",
+   "navigation_bar.community_timeline": "Local timeline",
+   "navigation_bar.edit_profile": "Edit profile",
+-  "navigation_bar.favourites": "Favourites",
++  "navigation_bar.favourites": "Florps",
+   "navigation_bar.follow_requests": "Follow requests",
+   "navigation_bar.info": "Extended information",
+   "navigation_bar.logout": "Logout",
+   "navigation_bar.mutes": "Muted users",
+   "navigation_bar.preferences": "Preferences",
+   "navigation_bar.public_timeline": "Federated timeline",
+-  "notification.favourite": "{name} favourited your status",
++  "notification.favourite": "{name} florped your ping",
+   "notification.follow": "{name} followed you",
+   "notification.mention": "{name} mentioned you",
+-  "notification.reblog": "{name} boosted your status",
++  "notification.reblog": "{name} relayed your ping",
+   "notifications.clear_confirmation": "Are you sure you want to clear all your notifications?",
+   "notifications.clear": "Clear notifications",
+   "notifications.column_settings.alert": "Desktop notifications",
+-  "notifications.column_settings.favourite": "Favourites:",
++  "notifications.column_settings.favourite": "Florps:",
+   "notifications.column_settings.follow": "New followers:",
+   "notifications.column_settings.mention": "Mentions:",
+-  "notifications.column_settings.reblog": "Boosts:",
++  "notifications.column_settings.reblog": "Relays:",
+   "notifications.column_settings.show": "Show in column",
+   "notifications.column_settings.sound": "Play sound",
+   "notifications.settings": "Column settings",
+@@ -104,13 +104,13 @@ const en = {
+   "search.placeholder": "Search",
+   "search.status_by": "Status by {name}",
+   "status.delete": "Delete",
+-  "status.favourite": "Favourite",
++  "status.favourite": "Florp",
+   "status.load_more": "Load more",
+   "status.media_hidden": "Media hidden",
+   "status.mention": "Mention @{name}",
+   "status.open": "Expand this status",
+-  "status.reblog": "Boost",
+-  "status.reblogged_by": "{name} boosted",
++  "status.reblog": "Relay",
++  "status.reblogged_by": "{name} relayed",
+   "status.reply": "Reply",
+   "status.report": "Report @{name}",
+   "status.sensitive_toggle": "Click to view",
+diff --git a/app/assets/stylesheets/custom.scss b/app/assets/stylesheets/custom.scss
+new file mode 100644
+index 00000000..f060b4d7
+--- /dev/null
++++ b/app/assets/stylesheets/custom.scss
+@@ -0,0 +1,16 @@
++$color1: #212121; // darkest
++$color2: #dae8da; // lightest
++$color3: #dae8da; // lighter
++$color4: #1da21d; // vibrant
++
++@import 'application';
++
++@media (min-width: 1600px) {
++  .column {
++    width: 25%;
++  }
++
++  .drawer {
++    width: 23%;
++  }
++}
+diff --git a/config/locales/en.yml b/config/locales/en.yml
+index 039dabf8..8eaf1fdc 100644
+--- a/config/locales/en.yml
++++ b/config/locales/en.yml
+@@ -13,18 +13,18 @@ en:
+     features:
+       api: Open API for apps and services
+       blocks: Rich block and muting tools
+-      characters: 500 characters per post
++      characters: 500 characters per ping
+       chronology: Timelines are chronological
+       ethics: 'Ethical design: no ads, no tracking'
+       gifv: GIFV sets and short videos
+-      privacy: Granular, per-post privacy settings
++      privacy: Granular, per-ping privacy settings
+       public: Public timelines
+     features_headline: What sets Mastodon apart
+     get_started: Get started
+     links: Links
+     other_instances: Other instances
+     source_code: Source code
+-    status_count_after: statuses
++    status_count_after: pings
+     status_count_before: Who authored
+     terms: Terms
+     user_count_after: users
+@@ -36,7 +36,7 @@ en:
+     nothing_here: There is nothing here!
+     people_followed_by: People whom %{name} follows
+     people_who_follow: People who follow %{name}
+-    posts: Posts
++    posts: Pings
+     remote_follow: Remote follow
+     unfollow: Unfollow
+   admin:
+@@ -237,8 +237,8 @@ en:
+         one: "1 new notification since your last visit \U0001F418"
+         other: "%{count} new notifications since your last visit \U0001F418"
+     favourite:
+-      body: 'Your status was favourited by %{name}:'
+-      subject: "%{name} favourited your status"
++      body: 'Your ping was florped by %{name}:'
++      subject: "%{name} florped your ping"
+     follow:
+       body: "%{name} is now following you!"
+       subject: "%{name} is now following you"
+@@ -249,8 +249,8 @@ en:
+       body: 'You were mentioned by %{name} in:'
+       subject: You were mentioned by %{name}
+     reblog:
+-      body: 'Your status was boosted by %{name}:'
+-      subject: "%{name} boosted your status"
++      body: 'Your ping was relayed by %{name}:'
++      subject: "%{name} relayed your ping"
+   pagination:
+     next: Next
+     prev: Prev
+@@ -279,7 +279,7 @@ en:
+       unlisted: Public, but do not display on the public timeline
+   stream_entries:
+     click_to_show: Click to show
+-    reblogged: boosted
++    reblogged: relayed
+     sensitive_content: Sensitive content
+   time:
+     formats:
+diff --git a/config/locales/simple_form.en.yml b/config/locales/simple_form.en.yml
+index c25407f2..80cca4cd 100644
+--- a/config/locales/simple_form.en.yml
++++ b/config/locales/simple_form.en.yml
+@@ -6,7 +6,7 @@ en:
+         avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 120x120px
+         display_name: At most 30 characters
+         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
+-        locked: Requires you to manually approve followers and defaults post privacy to followers-only
++        locked: Requires you to manually approve followers and defaults ping privacy to followers-only
+         note: At most 160 characters
+       imports:
+         data: CSV file exported from another Mastodon instance
+@@ -38,11 +38,11 @@ en:
+         must_be_following: Block notifications from people you don't follow
+       notification_emails:
+         digest: Send digest e-mails
+-        favourite: Send e-mail when someone favourites your status
++        favourite: Send e-mail when someone florps your ping
+         follow: Send e-mail when someone follows you
+         follow_request: Send e-mail when someone requests to follow you
+         mention: Send e-mail when someone mentions you
+-        reblog: Send e-mail when someone boosts your status
++        reblog: Send e-mail when someone boosts your ping
+     'no': 'No'
+     required:
+       mark: "*"
+-- 
+2.11.1
+
