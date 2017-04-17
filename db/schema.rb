@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20170414132105) do
     t.datetime "header_updated_at"
     t.string   "avatar_remote_url"
     t.datetime "subscription_expires_at"
-    t.datetime "last_webfingered_at"
     t.boolean  "silenced",                default: false, null: false
     t.boolean  "suspended",               default: false, null: false
     t.boolean  "locked",                  default: false, null: false
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170414132105) do
     t.integer  "statuses_count",          default: 0,     null: false
     t.integer  "followers_count",         default: 0,     null: false
     t.integer  "following_count",         default: 0,     null: false
+    t.datetime "last_webfingered_at"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", using: :btree
     t.index ["url"], name: "index_accounts_on_url", using: :btree
