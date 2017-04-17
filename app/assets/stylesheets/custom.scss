@@ -1,0 +1,20 @@
+$color1: #212121; // darkest
+$color2: #dae8da; // lightest
+$color3: #dae8da; // lighter
+$color4: #1da21d; // vibrant
+
+@import 'application';
+
+body {
+  background: $color1 image-url('cybre-photo.jpeg');
+}
+
+@media (min-width: 1600px) {
+  .column {
+    width: 25%;
+  }
+
+  .drawer {
+    width: 23%;
+  }
+}

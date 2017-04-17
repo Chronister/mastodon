@@ -1,7 +1,7 @@
 ---
 en:
   about:
-    about_mastodon: Mastodon is a <em>free, open-source</em> social network. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
+    about_mastodon: Cybrespace is an instance of Mastodon, a <em>free, open-source</em> social network. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
     about_this: About this instance
     apps: Apps
     business_email: 'Business e-mail:'
@@ -13,18 +13,18 @@ en:
     features:
       api: Open API for apps and services
       blocks: Rich block and muting tools
-      characters: 500 characters per post
+      characters: 500 characters per ping
       chronology: Timelines are chronological
       ethics: 'Ethical design: no ads, no tracking'
       gifv: GIFV sets and short videos
-      privacy: Granular, per-post privacy settings
+      privacy: Granular, per-ping privacy settings
       public: Public timelines
     features_headline: What sets Mastodon apart
     get_started: Get started
     links: Links
     other_instances: Other instances
     source_code: Source code
-    status_count_after: statuses
+    status_count_after: pings
     status_count_before: Who authored
     terms: Terms
     user_count_after: users
@@ -36,7 +36,7 @@ en:
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
-    posts: Posts
+    posts: Pings
     remote_follow: Remote follow
     unfollow: Unfollow
   admin:
@@ -71,6 +71,7 @@ en:
       profile_url: Profile URL
       public: Public
       push_subscription_expires: PuSH subscription expires
+      reset_password: Reset password
       salmon_url: Salmon URL
       silence: Silence
       statuses: Statuses
@@ -79,8 +80,10 @@ en:
       undo_suspension: Undo suspension
       username: Username
       web: Web
-    domain_block:
+    domain_blocks:
       add_new: Add new
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
       domain: Domain
       new:
         create: Create block
@@ -90,8 +93,23 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      reject_media: Reject media files
+      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      severities:
+        silence: Silence
+        suspend: Suspend
       severity: Severity
+      show:
+        affected_accounts:
+          one: One account in the database affected
+          other: "%{count} accounts in the database affected"
+        retroactive:
+          silence: Unsilence all existing accounts from this domain
+          suspend: Unsuspend all existing accounts from this domain
+        title: Undo domain block for %{domain}
+        undo: Undo
       title: Domain Blocks
+      undo: Undo
     pubsubhubbub:
       callback_url: Callback URL
       confirmed: Confirmed
@@ -219,8 +237,8 @@ en:
         one: "1 new notification since your last visit \U0001F418"
         other: "%{count} new notifications since your last visit \U0001F418"
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      body: 'Your ping was florped by %{name}:'
+      subject: "%{name} florped your ping"
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
@@ -231,8 +249,8 @@ en:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
     reblog:
-      body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      body: 'Your ping was relayed by %{name}:'
+      subject: "%{name} relayed your ping"
   pagination:
     next: Next
     prev: Prev
@@ -242,24 +260,6 @@ en:
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
-  reports:
-    comment:
-      label: Comment
-      none: None
-    delete: Delete
-    id: ID
-    mark_as_resolved: Mark as resolved
-    report: 'Report #%{id}'
-    reported_account: Reported account
-    reported_by: Reported by
-    reports: Reports
-    resolved: Resolved
-    silence_account: Silence account
-    status: Status
-    suspend_account: Suspend account
-    target: Target
-    unresolved: Unresolved
-    view: View
   settings:
     authorized_apps: Authorized apps
     back: Back to Mastodon
@@ -279,7 +279,7 @@ en:
       unlisted: Public, but do not display on the public timeline
   stream_entries:
     click_to_show: Click to show
-    reblogged: boosted
+    reblogged: relayed
     sensitive_content: Sensitive content
   time:
     formats:
@@ -290,10 +290,13 @@ en:
     disable: Disable
     enable: Enable
     enabled_success: Two-factor authentication successfully enabled
+    generate_recovery_codes: Generate Recovery Codes
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    recovery_codes_regenerated: Recovery codes successfully regenerated
+    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     setup: Set up
-    warning: If you cannot configure an authenticator app right now, you should click "disable" or you won't be able to login.
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:
     invalid_email: The e-mail address is invalid

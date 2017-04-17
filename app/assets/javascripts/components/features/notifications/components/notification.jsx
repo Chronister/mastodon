@@ -44,7 +44,7 @@ const Notification = React.createClass({
       <div className='notification notification-favourite'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
+            <i className='fa fa-fw fa-floppy-o' style={{ color: '#ca8f04' }} />
           </div>
 
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
@@ -71,7 +71,7 @@ const Notification = React.createClass({
     );
   },
 
-  render () {
+  render () { // eslint-disable-line consistent-return
     const { notification } = this.props;
     const account          = notification.get('account');
     const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
