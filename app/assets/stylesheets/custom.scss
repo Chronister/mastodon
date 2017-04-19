@@ -9,6 +9,26 @@ body {
   background: $color1 image-url('cybre-photo.jpeg');
 }
 
+/* Reboot icon animations */
+button.icon-button i.fa-retweet {
+  background-image: url(reboot.svg);
+  background-position: 0 0;
+  transition: background-position 0.1s steps(9);
+  transition-duration: 0.4s;
+}
+
+button.icon-button.active i.fa-retweet {
+  transition: background-position 0.6s steps(9);
+  transition-duration: 0.6s;
+  background-position: 0 100%;
+}
+
+.detailed-status__meta i.fa-retweet {
+  &::before {
+    content: url(rebooted.svg);
+  }
+}
+
 @media (min-width: 1600px) {
   .column {
     width: 25%;
