@@ -1,7 +1,7 @@
-$color1: #212121; // darkest
+$color1: #232323; // darkest
 $color2: #dae8da; // lightest
 $color3: #dae8da; // lighter
-$color4: #1da21d; // vibrant
+$color4: #1ea21e; // vibrant
 
 @import 'application';
 
@@ -9,12 +9,48 @@ body {
   background: $color1 image-url('cybre-photo.jpeg');
 }
 
-@media (min-width: 1600px) {
+@media screen and (min-width: 1300px) { 
   .column {
-    width: 25%;
+    flex-grow: 1 !important;
+    max-width: 500px;
   }
 
   .drawer {
-    width: 23%;
+    width: 20%;
   }
+
+  .columns-area { 
+    justify-content: center; 
+  } 
+}
+
+@media screen and (min-width: 1900px) { 
+  .column, .drawer { 
+    width: 400px; 
+    border-radius: 4px; 
+    height: 96vh; 
+    margin-top: 2vh; 
+  } 
+}
+
+.muted {
+  .status__content p, .status__content a {
+    color: lighten($color1, 35%);
+  }
+
+  .status__display-name strong {
+    color: lighten($color1, 35%);
+  }
+}
+
+.status time:after,
+.detailed-status__datetime span:after {
+  font: normal normal normal 14px/1 FontAwesome;
+  content: "\00a0\00a0\f08e";
+}
+
+.compose-form__buttons button.active:last-child {
+  color:$color2;
+  background-color: $color4;
+  border-radius:3px;
 }

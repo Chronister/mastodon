@@ -68,7 +68,7 @@ class DetailedStatus extends React.PureComponent {
               <FormattedNumber value={status.get('reblogs_count')} />
             </span>
           </Link> · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
-            <i className='fa fa-star' />
+            <i className='fa fa-floppy-o' />
             <span className='detailed-status__favorites'>
               <FormattedNumber value={status.get('favourites_count')} />
             </span>
