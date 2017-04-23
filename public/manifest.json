@@ -1,6 +1,6 @@
 {
-	"name": "Mastodon",
-	"description": "Mastodon is a free, open-source social network server.",
+	"name": "Cybrespace",
+	"description": "Cybrespace is a free, open-source social network server.",
 	"icons": [
 		{
 			"src": "\/android-chrome-192x192.png",
@@ -8,7 +8,7 @@
 			"type": "image\/png"
 		}
 	],
-	"theme_color": "#282c37",
+	"theme_color": "#1ea21e",
 	"display": "standalone",
 	"start_url": "/web/timelines/home"
 }
