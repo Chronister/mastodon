@@ -190,9 +190,9 @@ en:
     change_password: Credentials
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
-    login: Log in
-    logout: Logout
-    register: Sign up
+    login: Jack in
+    logout: Jack out
+    register: Apply for upload
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password

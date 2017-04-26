@@ -88,7 +88,7 @@ const en = {
   "navigation_bar.favourites": "Florps",
   "navigation_bar.follow_requests": "Follow requests",
   "navigation_bar.info": "Extended information",
-  "navigation_bar.logout": "Logout",
+  "navigation_bar.logout": "Jack out",
   "navigation_bar.mutes": "Muted users",
   "navigation_bar.preferences": "Preferences",
   "navigation_bar.public_timeline": "Federated timeline",
