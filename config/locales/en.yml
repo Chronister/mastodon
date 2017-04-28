@@ -13,7 +13,7 @@ en:
     features:
       api: Open API for apps and services
       blocks: Rich block and muting tools
-      characters: 500 characters per ping
+      characters: 512 characters per ping
       chronology: Timelines are chronological
       ethics: 'Ethical design: no ads, no tracking'
       gifv: GIFV sets and short videos
