@@ -87,3 +87,8 @@ body {
   overflow: visible;
   height:inherit;
 }
+
+.column {
+  // trying to fix @mdhughes safari problem
+  max-height:100vh;
+}
