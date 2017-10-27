@@ -388,6 +388,28 @@ namespace :mastodon do
     end
   end
 
+  desc 'Machine-readably add a user by providing their email, username and initial password.' \
+      'The user will receive a confirmation email.'
+  task add_user_automatic: :environment do
+    print 'Enter email: '
+    email = STDIN.gets.chomp
+
+    print 'Enter username: '
+    username = STDIN.gets.chomp
+
+    print 'Enter password: '
+    password = STDIN.gets.chomp
+
+    user = User.new(email: email, password: password, account_attributes: { username: username })
+    if user.save
+      puts 'User added and confirmation mail sent to user\'s email address.'
+    else
+      user.errors.each do |key, val|
+        STDERR.puts "#{key}: #{val}"
+      end
+    end
+  end
+
   namespace :webpush do
     desc 'Generate VAPID key'
     task generate_vapid_key: :environment do
