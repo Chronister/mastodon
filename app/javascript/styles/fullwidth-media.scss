@@ -1,0 +1,48 @@
+
+/* So we can position things absolute to it*/
+.status__content {
+  position:relative;
+}
+
+/* Use 30% of the viewport height always*/
+.detailed-status > .media-spoiler,
+.status > .media-spoiler,
+.status .video-player,
+.media-gallery {
+  max-height:30vh;
+  height:30vh !important;
+  position:relative;
+  margin-top:20px;
+  margin-left:-68px;
+  width: calc(100% + 80px);
+}
+
+/* Unset max-width for spoilers and the video
+ * player */
+.detailed-status > .media-spoiler,
+.status > .media-spoiler,
+.video-player {
+  max-width: none;
+}
+
+
+.detailed-status .media-spoiler,
+.status .media-spoiler {
+  height:30vh !important;
+  vertical-align:middle;
+}
+
+
+.status__video-player-video {
+  transform:unset;
+  top:unset;
+}
+
+
+/* Adjust offset and width for detail view */
+.detailed-status .media-gallery {
+  margin-left:-10px;
+  width: calc(100% + 22px);
+}
+
+
