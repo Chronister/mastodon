@@ -40,6 +40,7 @@
     "@babel/runtime": "^7.2.0",
     "@gfx/zopfli": "^1.0.10",
     "array-includes": "^3.0.3",
+    "atrament": "^0.2.3",
     "autoprefixer": "^9.4.3",
     "axios": "^0.18.0",
     "babel-core": "^7.0.0-bridge.0",

@@ -28,6 +28,7 @@ import {
   COMPOSE_UPLOAD_CHANGE_REQUEST,
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
+  COMPOSE_DOODLE_SET,
   COMPOSE_RESET,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -62,6 +63,17 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+  doodle: ImmutableMap({
+    fg: 'rgb(  0,    0,    0)',
+    bg: 'rgb(255,  255,  255)',
+    swapped: false,
+    mode: 'draw',
+    size: 'normal',
+    weight: 2,
+    opacity: 1,
+    adaptiveStroke: true,
+    smoothing: false,
+  }),
 });
 
 function statusToTextMentions(state, status) {
@@ -330,6 +342,8 @@ export default function compose(state = initialState, action) {
         map.set('spoiler_text', '');
       }
     });
+  case COMPOSE_DOODLE_SET:
+    return state.mergeIn(['doodle'], action.options);
   default:
     return state;
   }

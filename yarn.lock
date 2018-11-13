@@ -1272,6 +1272,10 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+atrament@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/atrament/-/atrament-0.2.3.tgz#6ccbc0daa6d3f25e5aeaeb31befeb78e86980348"
+
 autoprefixer@^9.4.3:
   version "9.4.3"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.4.3.tgz#c97384a8fd80477b78049163a91bbc725d9c41d9"
