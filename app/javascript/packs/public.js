@@ -18,6 +18,12 @@ window.addEventListener('message', e => {
       id: data.id,
       height: document.getElementsByTagName('html')[0].scrollHeight,
     }, '*');
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(sizeBioText);
+    } else {
+      sizeBioText();
+    }
   });
 });
 
@@ -115,6 +121,17 @@ function main() {
       scrollbarWidthStyle.id = 'scrollbar-width';
       document.head.appendChild(scrollbarWidthStyle);
       scrollbarWidthStyle.sheet.insertRule(`body.with-modals--active { margin-right: ${scrollbarWidth}px; }`, 0);
+    }
+
+    [].forEach.call(document.querySelectorAll('[data-component="Card"]'), (content) => {
+      const props = JSON.parse(content.getAttribute('data-props'));
+      ReactDOM.render(<CardContainer locale={locale} {...props} />, content);
+    });
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(sizeBioText);
+    } else {
+      sizeBioText();
     }
   });
 
@@ -214,6 +231,22 @@ function main() {
       console.error(err);
     }
   });
+
+  delegate(document, '#account_note', 'input', sizeBioText);
+
+  function sizeBioText() {
+    const noteCounter = document.querySelector('.note-counter');
+    const bioTextArea = document.querySelector('#account_note');
+
+    if (noteCounter) {
+      noteCounter.textContent = 413 - length(bioTextArea.value);
+    }
+
+    if (bioTextArea) {
+      bioTextArea.style.height = 'auto';
+      bioTextArea.style.height = (bioTextArea.scrollHeight+3) + 'px';
+    }
+  }
 }
 
 loadPolyfills().then(main).catch(error => {

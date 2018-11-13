@@ -75,7 +75,8 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, note_length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
+  validates :note, note_length: { maximum: 413 }, if: -> { local? && will_save_change_to_note? }
+  validate :note_has_eight_newlines?, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
   scope :remote, -> { where.not(domain: nil) }
@@ -294,10 +295,8 @@ class Account < ApplicationRecord
   def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
-    self.avatar              = nil
-    self.header              = nil
-    self[:avatar_remote_url] = ''
-    self[:header_remote_url] = ''
+    self.avatar = nil if errors[:avatar].present?
+    self.header = nil if errors[:header].present?
     save!
   end
 
@@ -319,6 +318,10 @@ class Account < ApplicationRecord
 
   def preferred_inbox_url
     shared_inbox_url.presence || inbox_url
+  end
+
+  def note_has_eight_newlines?
+    errors.add(:note, 'Bio can\'t have more then 8 newlines') unless note.count("\n") <= 8
   end
 
   class Field < ActiveModelSerializers::Model
