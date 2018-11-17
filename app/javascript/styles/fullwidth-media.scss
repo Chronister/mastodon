@@ -1,38 +1,31 @@
 
-/* So we can position things absolute to it*/
-.status__content {
-  position:relative;
-}
-
-/* Use 30% of the viewport height always*/
+/* Use 100% of the viewport width always*/
 .detailed-status > .media-spoiler,
 .status > .media-spoiler,
 .status .video-player,
-.media-gallery {
-  max-height:30vh;
-  height:30vh !important;
-  position:relative;
+.media-gallery,
+.status .status-card {
   margin-top:20px;
   margin-left:-68px;
   width: calc(100% + 80px);
 }
 
-/* Unset max-width for spoilers and the video
- * player */
+/* Unset max-width for spoilers and the video player */
 .detailed-status > .media-spoiler,
 .status > .media-spoiler,
 .video-player {
   max-width: none;
 }
 
-
-.detailed-status .media-spoiler,
-.status .media-spoiler {
-  height:30vh !important;
-  vertical-align:middle;
+/* If there's no status text, add an extra margin on top */
+.status .status__info + .media-gallery,
+.status .status__info + .media-spoiler,
+.status .status__info + .video-player,
+.status .status__info + .status-card {
+  margin-top: 40px;
 }
 
-
+/* Undo transforms on videos inside the video player */
 .status__video-player-video {
   transform:unset;
   top:unset;
@@ -45,4 +38,16 @@
   width: calc(100% + 22px);
 }
 
-
+.public-layout .status {
+  .status__content {
+    min-height: 15px;
+  }
+  & > .media-spoiler,
+  .video-player,
+  .media-gallery,
+  .status-card {
+    margin-top:20px;
+    width: calc(100% + 94px);
+    margin-left: -78px;
+  }
+}
