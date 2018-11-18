@@ -59,5 +59,14 @@
   overflow-y:auto;
 }
 
+/* Use display: none instead of visibility:hidden 
+ * to hide the suggested follows list on non-mobile */
+@media screen and (min-width: 630px) {
+  .search-results .trends {
+     display:none;
+  }
+}
+
+
 @import 'fullwidth-media';
 
