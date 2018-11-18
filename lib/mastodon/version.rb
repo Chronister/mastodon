@@ -29,7 +29,7 @@ module Mastodon
     end
 
     def to_s
-      [to_a.join('.'), flags].join
+      [to_a.join('.'), flags, '-cybre'].join
     end
 
     def repository
@@ -37,7 +37,7 @@ module Mastodon
     end
 
     def source_base_url
-      "https://github.com/#{repository}"
+      'https://cybre.tech/cybrespace/mastodon'
     end
 
     # specify git tag or commit hash here

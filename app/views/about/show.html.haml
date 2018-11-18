@@ -8,12 +8,15 @@
   = render partial: 'shared/og'
 
 .landing-page.alternative
+  .header{ style: 'display: none' }
+    = image_tag asset_pack_path('header-cybre-alt.jpg'), alt: @instance_presenter.site_title
   .container
     .grid
       .column-0
         .brand
           = link_to root_url do
-            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+            = image_tag asset_pack_path('logo-cybre.png')
+            = Setting.site_title
 
       - if Setting.timeline_preview
         .column-1
@@ -36,13 +39,13 @@
       - if Setting.timeline_preview
         .column-2
           .landing-page__hero
-            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('background-cybre.png'), alt: @instance_presenter.site_title
 
           .landing-page__information
             .landing-page__short-description
               .row
                 .landing-page__logo
-                  = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+                  = image_tag asset_pack_path('logo-cybre.png'), alt: 'Cybrespace'
 
                 %h1
                   = @instance_presenter.site_title
@@ -63,7 +66,12 @@
                   %span= t 'about.status_count_after', count: @instance_presenter.status_count
               .row__mascot
                 .landing-page__mascot
-                  = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('elephant_ui_plane.svg'), alt: ''
+                  .floats.float-1
+                    = image_tag asset_pack_path('floppy-3.svg')
+                  .floats.float-2
+                    = image_tag asset_pack_path('floppy-1.svg')
+                  .floats.float-3
+                    = image_tag asset_pack_path('floppy-2.svg')
 
       - else
         .column-2.non-preview

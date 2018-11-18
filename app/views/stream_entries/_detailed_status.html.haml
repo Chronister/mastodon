@@ -66,7 +66,7 @@
         = " "
     ·
     = link_to remote_interaction_path(status, type: :favourite), class: 'modal-button detailed-status__link' do
-      = fa_icon('star')
+      = fa_icon('floppy-o')
       %span.detailed-status__favorites>= number_to_human status.favourites_count, strip_insignificant_zeros: true
       = " "
 
