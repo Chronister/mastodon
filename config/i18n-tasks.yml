@@ -30,6 +30,7 @@ search:
     - app/assets/images
     - app/assets/fonts
     - app/assets/videos
+    - app/javascript/images
 
 ignore_missing:
   - 'activemodel.errors.*'

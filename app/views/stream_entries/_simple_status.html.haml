@@ -44,7 +44,6 @@
           = fa_icon 'reply fw'
         - else
           = fa_icon 'reply-all fw'
-      .status__action-bar__counter__label= obscured_counter status.replies_count
     = link_to remote_interaction_path(status, type: :reblog), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
       - if status.public_visibility? || status.unlisted_visibility?
         = fa_icon 'retweet fw'
