@@ -2,3 +2,4 @@ default: styles/cybre.scss
 mastodon: styles/application.scss
 contrast: styles/contrast.scss
 mastodon-light: styles/mastodon-light.scss
+light: styles/cybre-light.scss
