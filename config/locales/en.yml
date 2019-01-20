@@ -933,6 +933,7 @@ en:
     default: Cybrespace
     mastodon: Mastodon
     mastodon-light: Mastodon (light)
+    win95: Windows 95
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
