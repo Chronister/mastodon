@@ -92,6 +92,9 @@ $ui-highlight-color: $win95-window-header;
 
 @import 'cybre-base';
 
+html {
+  scrollbar-color: $win95-mid-grey transparent;
+}
 
 body {
   font-size:13px;
@@ -112,7 +115,7 @@ body.admin {
 
 .tabs-bar {
   background: $win95-bg;
-  @include win95-outset()
+  @include win95-outset();
   height: 30px;
 }
 
@@ -190,7 +193,7 @@ body.admin {
 
 .column > .scrollable {
   background: $win95-bg;
-  @include win95-border-outset()
+  @include win95-border-outset();
   border-top-width:0px;
 }
 
@@ -204,7 +207,7 @@ body.admin {
   padding:0px;
   font-size:13px;
   background:#7f7f7f;
-  @include win95-border-outset()
+  @include win95-border-outset();
   border-bottom-width:0px;
   color:white;
   font-weight:bold;
@@ -246,7 +249,7 @@ body.admin {
 .column-header__button {
   background: $win95-bg;
   color: black;
-  @include win95-outset()
+  @include win95-outset();
 
   line-height:0px;
   font-size:14px;
@@ -271,7 +274,7 @@ body.admin {
   max-height: 20px;
   min-height: unset;
   margin: 2px;
-  @include win95-outset()
+  @include win95-outset();
   font-size: 13px;
   line-height: 17px;
   font-weight:bold;
@@ -284,7 +287,7 @@ body.admin {
 .column-back-button {
   background:$win95-bg;
   color:black;
-  @include win95-outset()
+  @include win95-outset();
   font-size:13px;
   font-weight:bold;
 
@@ -413,7 +416,7 @@ body.admin {
 
 .text-btn {
   background-color:$win95-bg;
-  @include win95-outset()
+  @include win95-outset();
   padding:4px;
 }
 
@@ -451,12 +454,11 @@ body.admin {
 .missing-indicator {
   background-color:$win95-bg;
   color:black;
-  @include win95-outset()
+  @include win95-outset();
 }
 
 .missing-indicator > div {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRUaXRsZQAACJnLyy9Jyy/NSwEAD5IDblIFOhoAAAAXelRYdEF1dGhvcgAACJlLzijKz0vMAQALmgLoDsFj8gAAAQpJREFUOMuVlD0OwjAMhd2oQl04Axfo0IGBgYELcAY6cqQuSO0ZOEAZGBg6VKg74gwsEaoESRVHjusI8aQqzY8/PbtOEz1qkFSn2YevlaNOpLMJh2DwvixhuXtOa6/LCh51DUMEFkAsgAZD207Doin8mQ562JpRE5CHBAAhmIqD1L8AqzUUUJkxc6kr3AgAJ+NuvIWRdk7WcrKl0AUqcIBBHOiEbpS4m27mIL5Onfg3k0rgggeQuS2sDOGSahKR+glgqaGLgUJs951NN1q9D72cQqQWR9cr3sm9YcEssEuz6eEuZh2bu0aSOhQ1MBezu2O/+TVSvEFII3qLsZWrSA2AAUQIh1HpyP/kC++zjVSMj6ntAAAAAElFTkSuQmCC')
-    no-repeat;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAF3pUWHRUaXRsZQAACJnLyy9Jyy/NSwEAD5IDblIFOhoAAAAXelRYdEF1dGhvcgAACJlLzijKz0vMAQALmgLoDsFj8gAAAQpJREFUOMuVlD0OwjAMhd2oQl04Axfo0IGBgYELcAY6cqQuSO0ZOEAZGBg6VKg74gwsEaoESRVHjusI8aQqzY8/PbtOEz1qkFSn2YevlaNOpLMJh2DwvixhuXtOa6/LCh51DUMEFkAsgAZD207Doin8mQ562JpRE5CHBAAhmIqD1L8AqzUUUJkxc6kr3AgAJ+NuvIWRdk7WcrKl0AUqcIBBHOiEbpS4m27mIL5Onfg3k0rgggeQuS2sDOGSahKR+glgqaGLgUJs951NN1q9D72cQqQWR9cr3sm9YcEssEuz6eEuZh2bu0aSOhQ1MBezu2O/+TVSvEFII3qLsZWrSA2AAUQIh1HpyP/kC++zjVSMj6ntAAAAAElFTkSuQmCC') no-repeat;
   background-position:center center;
 }
 
@@ -464,6 +466,35 @@ body.admin {
 .error-column {
   background: $win95-bg;
   color: black;
+}
+
+.notification__filter-bar {
+  background: $win95-bg;
+  @include win95-border-outset-sides-only();
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: 2px solid #efefef;
+  overflow-y: visible;
+
+  button {
+    background: transparent;
+    color: black;
+    padding: 4px 0;
+    align-self: end;
+    @include win95-tab();
+
+    &.active {
+      color: black;
+      top: 2px;
+      padding:8px 0;
+      background-color: $win95-bg;
+
+      &::before, &::after {
+        display:none;
+      }
+    }
+  }
 }
 
 .status__wrapper {
@@ -484,6 +515,10 @@ body.admin {
   &:focus, &:active {
     background:$win95-bg;
   }
+
+  &:not(.read) {
+    background: white;
+  }
 }
 .focusable:focus .status.status-direct {
   background:$win95-bg;
@@ -493,6 +528,14 @@ body.admin {
   .status__content:focus, .status:focus,
   .status__wrapper:focus, .status__content__text:focus {
     background-color: $win95-bg;
+  }
+
+  .status.status-direct, .detailed-status {
+    &:not(.read) {
+      .status__content:focus {
+        background-color: white;
+      }
+    }
   }
 }
 
@@ -539,10 +582,6 @@ body.admin {
 }
 .status.light .status__content a {
   color:blue;
-}
-
-.status__content {
-  padding-bottom: 40px;
 }
 
 .focusable:focus {
@@ -601,7 +640,7 @@ body.admin {
 
 .icon-button {
   background:$win95-bg;
-  @include win95-border-outset()
+  @include win95-border-outset();
   padding:0px 0px 0px 0px;
   margin-right:4px;
 
@@ -635,7 +674,7 @@ body.admin {
 
 .icon-button.star-icon > i {
   background:$win95-bg;
-  @include win95-border-outset()
+  @include win95-border-outset();
   padding-bottom:3px;
 }
 
@@ -662,15 +701,15 @@ body.admin {
   padding-right:25px;
 }
 
-.status-card {
+.status-card, .status-card.compact, a.status-card, a.status-card.compact {
   border-radius:0px;
   background:white;
   border: 1px solid black;
   color:black;
-}
 
-.status-card:hover {
-  background-color:white;
+  &:hover {
+    background-color:white;
+  }
 }
 
 .status-card__title {
@@ -712,7 +751,7 @@ body.admin {
 
 .reply-indicator__content .status__content__spoiler-link, .status__content .status__content__spoiler-link {
   background:$win95-bg;
-  @include win95-outset()
+  @include win95-outset();
 }
 
 .reply-indicator__content .status__content__spoiler-link:hover, .status__content .status__content__spoiler-link:hover {
@@ -744,7 +783,7 @@ body.admin {
 
 .drawer__header {
   background: $win95-bg;
-  @include win95-border-outset()
+  @include win95-border-outset();
   justify-content:left;
   margin-bottom:0px;
   padding-bottom:2px;
@@ -753,7 +792,7 @@ body.admin {
 
 .drawer__tab {
   color:black;
-  @include win95-outset()
+  @include win95-outset();
   padding:5px;
   margin:2px;
   flex: 0 0 auto;
@@ -969,7 +1008,7 @@ body.admin {
 {
   box-shadow:unset;
   color:black;
-  @include win95-outset()
+  @include win95-outset();
   background: $win95-bg;
 }
 
@@ -981,32 +1020,34 @@ body.admin {
   font-weight:bold;
 }
 
-.compose-form__warning::before {
-  content:"Tip:";
-  font-weight:bold;
-  display:block;
-  position:absolute;
-  top:-10px;
-  background-color:$win95-bg;
-  font-size:11px;
-  padding: 0px 5px;
-}
+.compose-form {
+  .compose-form__warning::before {
+    content:"Tip:";
+    font-weight:bold;
+    display:block;
+    position:absolute;
+    top:-10px;
+    background-color:$win95-bg;
+    font-size:11px;
+    padding: 0px 5px;
+  }
 
-.compose-form__warning {
-  position:relative;
-  box-shadow:unset;
-  border:2px groove $win95-bg;
-  background-color:$win95-bg;
-  color:black;
-}
+  .compose-form__warning {
+    position:relative;
+    box-shadow:unset;
+    border:2px groove $win95-bg;
+    background-color:$win95-bg;
+    color:black;
+  }
 
-.compose-form__warning a {
-  color:blue;
-}
+  .compose-form__warning a {
+    color:blue;
+  }
 
-.compose-form__warning strong {
-  color:black;
-  text-decoration:underline;
+  .compose-form__warning strong {
+    color:black;
+    text-decoration:underline;
+  }
 }
 
 .compose-form__buttons button.active:last-child {
@@ -1077,7 +1118,7 @@ body.admin {
 
 .button {
   background-color:$win95-bg;
-  @include win95-outset()
+  @include win95-outset();
   border-radius:0px;
   color:black;
   font-weight:bold;
@@ -1389,7 +1430,7 @@ body.admin {
   background-image: url("../images/icon_tos.png");
   &:hover { background-image: url("../images/icon_tos.png"); }
 }
-.getting-started__footer ul li a[href="https://github.com/tootsuite/documentation#documentation"] {
+.getting-started__footer ul li a[href="https://docs.joinmastodon.org"] {
   background-image: url("../images/icon_docs.png");
   &:hover { background-image: url("../images/icon_docs.png"); }
 }
@@ -1638,7 +1679,7 @@ body.admin {
 
 .embed-modal, .error-modal, .onboarding-modal,
 .actions-modal, .boost-modal, .confirmation-modal, .report-modal {
-  @include win95-outset()
+  @include win95-outset();
   background:$win95-bg;
 }
 
@@ -1762,7 +1803,7 @@ body.admin {
 .admin-wrapper {
   position:relative;
   background: $win95-bg;
-  @include win95-outset()
+  @include win95-outset();
   width:70vw;
   height:80vh;
   margin:10vh auto;
@@ -1799,7 +1840,7 @@ body.admin {
 .admin-wrapper .content-wrapper {
   flex: 1 1 auto;
   width:calc(100% - 20px);
-  @include win95-border-outset()
+  @include win95-border-outset();
   position:relative;
   margin-left:10px;
   margin-right:10px;
@@ -2053,7 +2094,7 @@ a.table-action-link:hover,
 .simple_form .block-button
 {
   background: $win95-bg;
-  @include win95-outset()
+  @include win95-outset();
   color:black;
   font-weight: normal;
 

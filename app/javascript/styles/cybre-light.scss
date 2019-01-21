@@ -7,6 +7,7 @@ $ui-secondary-color: #ead0d6; // "lightest"
 $ui-primary-color: #bf5677; // "lighter"
 $ui-highlight-color: #bf5677; // "vibrant"
 $primary-text-color: #382b32;
+$dark-text-color: #ca748f;
 $secondary-text-color: #382b32;
 
 $header-color: $ui-primary-color;
@@ -758,6 +759,16 @@ button.icon-button {
             &:hover {
               background-color: lighten($ui-primary-color, 10%);
             }
+          }
+        }
+      }
+      a {
+        &.selected {
+          background-color: $ui-primary-color;
+          color: $white;
+
+          &:hover {
+            background-color: lighten($ui-primary-color, 10%);
           }
         }
       }

@@ -308,13 +308,14 @@ class Status extends ImmutablePureComponent {
 
             <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable />
 
-            {media}
-
             {showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) && (
               <button className='status__content__read-more-button' onClick={this.handleClick}>
+                <i className='fa fa-fw fa-sort-amount-desc status__prepend-icon' />
                 <FormattedMessage id='status.show_thread' defaultMessage='Show thread' />
               </button>
             )}
+
+            {media}
 
             <StatusActionBar status={status} account={account} {...other} />
           </div>
